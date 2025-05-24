@@ -1,0 +1,11 @@
+// device platforms (mobile, app, browser, etc.)
+// classes added on body, application is running...
+
+$platform-desktop: 'mode--platform-desktop'; // `desktop` device
+$platform-mobile: 'mode--platform-mobile'; // `mobile` device
+$platform-browser: 'mode--platform-browser'; // cbrowser
+$platform-android-browser: 'mode--platform-android-browser'; // Android `mobile` browser
+$platform-ios-browser: 'mode--platform-ios-browser'; // iOS `mobile` browser
+$platform-app: 'mode--platform-app'; // `mobile` app
+$platform-android-app: 'mode--platform-android-app'; // Android `mobile` app
+$platform-ios-app: 'mode--platform-ios-app'; // iOS `mobile` app

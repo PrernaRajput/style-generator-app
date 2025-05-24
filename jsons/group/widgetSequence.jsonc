@@ -1,0 +1,66 @@
+{
+    "status": "success",
+    "component": {
+        "data": {},
+        "elements": {
+            "labels": {},
+            "urls": {
+                "fetchGroupListingPage": "http://localhost:8081"
+            }
+        },
+        "structure": {
+            "widgets": [
+                {
+                    "name": "groupListingPage",
+                    "url": {
+                        "refId": "fetchGroupListingPage",
+                        "params": {},
+                        "request": {
+                            "context": {
+                                "groupRef": "ctx:clear",
+                                "groupName": "ctx:clear"
+                            },
+                            "data": {}
+                        }
+                    },
+                    "layoutConfig": {
+                        "layoutType": "flex",
+                        "web": {
+                            "grid": {
+                                "flexDirection": "column",
+                                "alignment": "center",
+                                "justifyContent": "flex-start"
+                            },
+                            "width":100
+                        },
+                        "mobile": {
+                            "height": 50,
+                            "width": 50,
+                            "padding": "small",
+                            "gap": "12"
+                        }
+                    },
+                    "visibility": "groupListingPage"
+                }
+            ]
+        },
+        "authorization": {
+            "fetchGroupListingPage": true,
+            "navigateToInvoiceDetails": true,
+            "navigateToAgencyDetails": true,
+            "navigateToOtherAgents": true,
+            "navigateToAgencyUser": true,
+            "navigateToInsuredLevelDetails": true,
+            "navigateToBilling": true,
+            "navigateToPaymentAccounts": true,
+            "SYNC_NAVIGATION": true,
+            "groupSelected__Redirection": true,
+            "navigateToPendingEnrollmentsMemberPage": true
+        },
+        "visibility": {
+            "groupListingPage": true
+        },
+        "context": {},
+        "subscribedEvents": {}
+    }
+}

@@ -1,0 +1,126 @@
+// reset all styles
+@import "reset";
+
+html,
+body {
+	font-size: $base-font-size-px;
+	scroll-behavior: smooth;
+	-webkit-font-smoothing: antialiased;
+
+	// theme values
+	font-family: $theme-font-primary-regular;
+	background-color: $main-bg-app-color;
+
+	// to remove font boosting.
+	text-size-adjust: none;
+}
+
+body {
+	// min-width: $width-min-content; // min-content-width
+	overflow-x: auto;
+	height: 100%;
+	width: 100%;
+}
+
+// disable scroll on the body
+body.#{ $mode-scroll-lock },
+body.#{ $mode-orientation-landscape },
+body.#{ $mode-pseudo-input-capture-open },
+body.#{ $mode-dialog-open },
+body.#{ $mode-overlay-open } {
+	overflow: hidden !important;
+	-webkit-overflow-scrolling: auto !important;
+	height: 100vh !important;
+}
+
+// for mobile platform,
+@include with-platform($platform-mobile) {
+	// use full screen body container
+	height: vh(100);
+	overflow-x: hidden;
+	overflow-y: auto;
+	min-width: 100%;
+
+	// avoid user text selection
+	@include no-select;
+
+	// use white background color
+	background-color: $main-bg-widget-color !important;
+
+	// give all div elements momentum scroll
+	div {
+		-webkit-overflow-scrolling: touch;
+	}
+}
+
+// for app platform,
+@include with-platform($platform-app) {
+	// avoid text selection
+	@include no-select;
+}
+
+// border box
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+b,
+span,
+code,
+abbr,
+em,
+button {
+	box-sizing: border-box;
+	// -webkit-user-select: none;
+	// -khtml-user-select: none;
+	// -moz-user-select: none;
+	// -ms-user-select: none;
+	// user-select: none;
+	//outline: none;
+
+	// text selection color
+	&::selection {
+		background-color: $main-secondary-color;
+		color: $main-bg-widget-color;
+	}
+}
+
+div[tabindex="0"],
+span[tabindex="0"],
+a,
+button,
+input,
+textarea {
+	font-family: $theme-font-primary-regular;
+
+	/**---------Disabling focus on click-------- */
+
+	// &:focus {
+	// 	outline-width: medium;
+	// 	outline-color: #0061c3b0;
+	// 	outline-style: auto;
+
+	// 	@include ie-only {
+	// 		outline-style: solid;
+	// 	}
+
+	// 	@include ie-edge {
+	// 		outline-style: solid;
+	// 	}
+	// }
+}
+
+// table layout
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#app {
+	background: $main-bg-app-color !important;
+}

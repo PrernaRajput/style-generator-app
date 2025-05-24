@@ -1,0 +1,47 @@
+/**
+ * returns font-family
+ * @requires {variable} $type
+ * @returns {font-family}
+*/
+@function font-weight($type) {
+	@if $type == "regular" {
+		@return $theme-font-primary-regular;
+	} @else if $type == "medium" {
+		@return $theme-font-primary-medium;
+	} @else if $type == "bold" {
+		@return $theme-font-primary-bold;
+	} @else {
+		@return $theme-font-primary-light;
+	}
+}
+
+/**
+ * returns line-height
+ * @requires {$text-type: 'display' | 'heading' | 'body, $level: 1 | 2 | 3 }
+ * @returns {line-height}
+*/
+@function line-height($text-type, $level) {
+	@if $text-type == "display" {
+		@if $level == 1 {
+			@return 48px;
+		} @else {
+			@return 40px;
+		}
+	} @else if $text-type == "heading" {
+		@if $level == 1 {
+			@return 30px;
+		} @else if $level == 2 {
+			@return 28px;
+		} @else {
+			@return 26px;
+		}
+	} @else if $text-type == "body" {
+		@if $level == 1 {
+			@return 24px;
+		} @else if $level == 2 {
+			@return 22px;
+		} @else {
+			@return 16px;
+		}
+	}
+}

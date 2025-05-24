@@ -1,0 +1,11 @@
+/**
+ * px to rem
+ * @link http://www.pjmccormick.com/sweet-sass-function-convert-px-em
+ * @requires {variable} $base-font-size
+ * @param {number} $target - size to convert
+ * @param {number} $context ($base-font-size) - context conversion is based on
+ * @example scss
+ * .foobar { padding-bottom: rem-converter(30); }
+ * @returns {number}
+ */
+/*# sourceMappingURL=index.css.map */

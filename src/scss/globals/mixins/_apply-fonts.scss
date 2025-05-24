@@ -1,0 +1,22 @@
+@import "../../globals/functions/font-properties";
+
+// DISPLAY
+@mixin font-display( $level, $type ) {
+    font-size: var( --font-display-#{$level} );
+    font-family: font-weight( $type );
+    line-height: line-height( 'display', $level );
+}
+
+//HEADING
+@mixin font-heading( $level, $type ) {
+    font-size: var( --font-heading-#{$level} );
+    font-family: font-weight( $type );
+    line-height: line-height( 'heading', $level );
+}
+
+//BODY
+@mixin font-body( $level, $type ) {
+    font-size: var( --font-body-#{$level} );
+    font-family: font-weight( $type );
+    line-height: line-height( 'body', $level );
+}
