@@ -12,10 +12,10 @@
  * @returns {number}
  */
 
- @function rem-converter($target, $context: $base-font-size) {
-    @if $target == 0 {
-        @return 00;
-    } @else {
-        @return calc( $target / $context ) + 0rem;
-    }
+@function rem-converter($target, $context: $base-font-size) {
+  @if $target == 0 {
+    @return 00;
+  } @else {
+    @return calc($target / $context) + 0rem;
+  }
 }

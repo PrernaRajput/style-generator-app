@@ -1,9 +1,9 @@
 @mixin hide-scrollbar() {
-	&::-webkit-scrollbar,
-	&::-webkit-scrollbar {
-		display: none;
-		background: transparent;
-		visibility: hidden;
-		width: 0px;
-	}
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar {
+    display: none;
+    background: transparent;
+    visibility: hidden;
+    width: 0px;
+  }
 }

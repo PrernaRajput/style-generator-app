@@ -1,4 +1,5 @@
-@mixin safari-only{
-    @supports (-webkit-marquee-repetition:infinite) and (object-fit:fill) {
-        @content;
-}}
+@mixin safari-only {
+  @supports (-webkit-marquee-repetition: infinite) and (object-fit: fill) {
+    @content;
+  }
+}

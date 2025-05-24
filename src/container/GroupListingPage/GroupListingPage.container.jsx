@@ -16,67 +16,63 @@ import { resolvedLabels } from 'resolvers/labelValue';
  * // render
  * <GroupListingPage propName='propValue'/>
  */
-export const GroupListingPage = ( props ) => {
+export const GroupListingPage = (props) => {
+  const [state, setState] = useState({
+    isFetching: true,
+    componentData: {},
+    networkStatus: undefined,
+    widgetError: {},
+  });
 
-    const [ state, setState ] = useState( {
-        isFetching: true,
-        componentData: {},
-        networkStatus: undefined,
-        widgetError: {}
-    } );
+  const groupListingPageService = new HttpWrapperService();
 
-    const groupListingPageService = new HttpWrapperService();
+  /**
+   * @summary : This function fetches data of this widget.
+   * @service : Call groupListingPage service with context as request payload.
+   *      @success | On success, update state with the success data.
+   *      @failure | On service failure, updated state with the error message and error data.
+   * @returns : none
+   * @example : fetchData();
+   */
+  const fetchData = async () => {
+    log.debug('GroupListingPage.fetchData()');
 
-    /**
-     * @summary : This function fetches data of this widget.
-     * @service : Call groupListingPage service with context as request payload.
-     *      @success | On success, update state with the success data.
-     *      @failure | On service failure, updated state with the error message and error data.
-     * @returns : none
-     * @example : fetchData();
-     */
-    const fetchData = async () => {
+    const { status, data } = await groupListingPageService.makePostRequest({
+      url: get(CONFIG, 'endpoints.routes.fetchGroupListing', undefined),
+      data: {},
+    });
 
-        log.debug( 'GroupListingPage.fetchData()' );
+    const resolvedData = resolvedLabels(data);
 
-        const { status, data } = await groupListingPageService.makePostRequest( {
-            url: get( CONFIG, 'endpoints.routes.fetchGroupListing', undefined ),
-            data: {}
-        } );
+    if (SERVICE_RESPONSE_STATUS.SUCCESS === status) {
+      setState({
+        ...state,
+        isFetching: false,
+        componentData: resolvedData,
+        networkStatus: status,
+      });
+    } else {
+      setState({
+        ...state,
+        isFetching: false,
+        networkStatus: status,
+        widgetError: resolvedData,
+      });
+    }
+  };
 
-        const resolvedData = resolvedLabels( data );
+  /**
+   * @summary React Hook that triggers data fetching when the component mounts and has no dependencies.
+   * @name useEffect
+   * @param {function} effect - The function to be executed when the component mounts.
+   * @param {Array} dependencies - An empty array ([]) indicating that the effect has no dependencies and should only run once when the component mounts.
+   * @returns {void}
+   */
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-        if ( SERVICE_RESPONSE_STATUS.SUCCESS === status ) {
-            setState( {
-                ...state,
-                isFetching: false,
-                componentData: resolvedData,
-                networkStatus: status
-            } );
-        } else {
-            setState( {
-                ...state,
-                isFetching: false,
-                networkStatus: status,
-                widgetError: resolvedData
-            } );
-        }
-    };
-
-    /**
-     * @summary React Hook that triggers data fetching when the component mounts and has no dependencies.
-     * @name useEffect
-     * @param {function} effect - The function to be executed when the component mounts.
-     * @param {Array} dependencies - An empty array ([]) indicating that the effect has no dependencies and should only run once when the component mounts.
-     * @returns {void}
-     */
-    useEffect( () => {
-        fetchData();
-    }, [] );
-
-    return (
-        <GroupListingPageView {...props} {...state} />
-    );
+  return <GroupListingPageView {...props} {...state} />;
 };
 
 // set display name

@@ -1,27 +1,27 @@
 @mixin apply-theme($_theme) {
-    @if $_theme == $theme-member {
-        body.#{$theme-class-member} {
-            @content;
-        }
-    } @else if $_theme == $theme-provider {
-        body.#{$theme-class-provider} {
-            @content;
-        }
-    } @else if $_theme == $theme-employer {
-        body.#{$theme-class-employer} {
-            @content;
-        }
-    } @else if $_theme == $theme-broker {
-        body.#{$theme-class-broker} {
-            @content;
-        }
-    } @else if $_theme == $theme-administrator {
-        body.#{$theme-class-administrator} {
-            @content;
-        }
-    } @else if $_theme == $theme-customerservicerep {
-        body.#{$theme-class-customerservicerep} {
-            @content;
-        }
+  @if $_theme == $theme-member {
+    body.#{$theme-class-member} {
+      @content;
     }
+  } @else if $_theme == $theme-provider {
+    body.#{$theme-class-provider} {
+      @content;
+    }
+  } @else if $_theme == $theme-employer {
+    body.#{$theme-class-employer} {
+      @content;
+    }
+  } @else if $_theme == $theme-broker {
+    body.#{$theme-class-broker} {
+      @content;
+    }
+  } @else if $_theme == $theme-administrator {
+    body.#{$theme-class-administrator} {
+      @content;
+    }
+  } @else if $_theme == $theme-customerservicerep {
+    body.#{$theme-class-customerservicerep} {
+      @content;
+    }
+  }
 }

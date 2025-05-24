@@ -3,35 +3,40 @@
 /// Creates a list of global breakpoints ranges
 ///
 $breakpoints: (
-'phone': 0px 768px,
-'tablet': 769px 1024px,
-'laptop': 1025px 1440px
+  'phone': 0px 768px,
+  'tablet': 769px 1024px,
+  'laptop': 1025px 1440px,
 ) !default;
 
 ///
 /// Creates a list of static expressions or media types
 ///
 $media-expressions: (
-'screen': 'screen',
-'print': 'print',
-'handheld': 'handheld',
-'landscape': '(orientation: landscape)',
-'portrait': '(orientation: portrait)',
-'retina2x': '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx)',
-'retina3x': '(-webkit-min-device-pixel-ratio: 3), (min-resolution: 350dpi), (min-resolution: 3dppx)',
-'phone': '(min-width: #{nth(map-get($breakpoints, "phone"), 1 )}) and (max-width: #{nth(map-get($breakpoints, "phone"), 2 )})',
-'tablet': '(min-width: #{nth(map-get($breakpoints, "tablet"), 1 )}) and (max-width: #{nth(map-get($breakpoints, "tablet"), 2 )})',
-'laptop': '(min-width: #{nth(map-get($breakpoints, "laptop"), 1 )}) and (max-width: #{nth(map-get($breakpoints, "laptop"), 2 )})'
+  'screen': 'screen',
+  'print': 'print',
+  'handheld': 'handheld',
+  'landscape': '(orientation: landscape)',
+  'portrait': '(orientation: portrait)',
+  'retina2x':
+    '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx)',
+  'retina3x':
+    '(-webkit-min-device-pixel-ratio: 3), (min-resolution: 350dpi), (min-resolution: 3dppx)',
+  'phone':
+    '(min-width: #{nth(map-get($breakpoints, "phone"), 1 )}) and (max-width: #{nth(map-get($breakpoints, "phone"), 2 )})',
+  'tablet':
+    '(min-width: #{nth(map-get($breakpoints, "tablet"), 1 )}) and (max-width: #{nth(map-get($breakpoints, "tablet"), 2 )})',
+  'laptop':
+    '(min-width: #{nth(map-get($breakpoints, "laptop"), 1 )}) and (max-width: #{nth(map-get($breakpoints, "laptop"), 2 )})',
 ) !default;
 
 ///
 /// Defines a number to be added or subtracted from each unit when declaring breakpoints with exclusive intervals
 ///
 $unit-intervals: (
-'px': 1,
-'em': 0.01,
-'rem': 0.1,
-'': 0
+  'px': 1,
+  'em': 0.01,
+  'rem': 0.1,
+  '': 0,
 ) !default;
 
 ///
@@ -69,7 +74,7 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
 /// @example scss - With a static expression
 ///  @include media('retina2x') { }
 ///
-/// @deprecated scss - Mixing two device range 
+/// @deprecated scss - Mixing two device range
 ///  @include media('tablet', 'phone') { }
 ///
 /// @ scss - Mixing everything
@@ -77,7 +82,8 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
 ///
 @mixin media($conditions...) {
   @if ($im-media-support and length($conditions) == 0) or
-      (not $im-media-support and im-intercepts-static-breakpoint($conditions...)) {
+    (not $im-media-support and im-intercepts-static-breakpoint($conditions...))
+  {
     @content;
   } @else if ($im-media-support and length($conditions) > 0) {
     @media #{unquote(parse-expression(nth($conditions, 1)))} {
@@ -112,14 +118,16 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
 /// and use the mixin everywhere else because it's much more elegant.
 ///
 @mixin log($message) {
-  @if im-log($message) {}
+  @if im-log($message) {
+  }
 }
 
 ///
 /// Function with no `@return` called next to `@warn` in Sass 3.3
 /// to trigger a compiling error and stop the process.
 ///
-@function noop() {}
+@function noop() {
+}
 
 ///
 /// Determines whether a list of conditions is intercepted by the static breakpoint.
@@ -128,7 +136,8 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
   $no-media-breakpoint-value: map-get($breakpoints, $im-no-media-breakpoint);
 
   @if not $no-media-breakpoint-value {
-    @if im-log('`#{$im-no-media-breakpoint}` is not a valid breakpoint.') {}
+    @if im-log('`#{$im-no-media-breakpoint}` is not a valid breakpoint.') {
+    }
   }
 
   @each $condition in $conditions {
@@ -136,11 +145,10 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
       $operator: get-expression-operator($condition);
       $prefix: get-expression-prefix($operator);
       $value: get-expression-value($condition, $operator);
-      
-      ;
 
       @if ($prefix == 'max' and $value <= $no-media-breakpoint-value) or
-          ($prefix == 'min' and $value > $no-media-breakpoint-value) {
+        ($prefix == 'min' and $value > $no-media-breakpoint-value)
+      {
         @return false;
       }
     } @else if not index($im-no-media-expressions, $condition) {
@@ -198,14 +206,16 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
   @return if(index(('<', '<=', '≤'), $operator), '1', '2');
 }
 
-
 @function get-expression-value($expression, $operator) {
   $operator-index: str-index($expression, $operator);
   $value: str-slice($expression, $operator-index + str-length($operator));
 
   @if map-has-key($breakpoints, $value) {
-      @debug "divider offset: #{$operator}";
-    $value: nth(map-get($breakpoints, $value), to-number( get-operator-list( $operator ) ) );
+    @debug 'divider offset: #{$operator}';
+    $value: nth(
+      map-get($breakpoints, $value),
+      to-number(get-operator-list($operator))
+    );
   } @else {
     $value: to-number($value);
   }
@@ -241,12 +251,11 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
   }
 
   $operator: get-expression-operator($expression);
-  
+
   @if map-has-key($media-expressions, $expression) {
     @return map-get($media-expressions, $expression);
   }
-  
-  
+
   $dimension: get-expression-dimension($expression, $operator);
   $prefix: get-expression-prefix($operator);
   $value: get-expression-value($expression, $operator);
@@ -289,7 +298,18 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
   $result: 0;
   $digits: 0;
   $minus: ($first-character == '-');
-  $numbers: ('0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9);
+  $numbers: (
+    '0': 0,
+    '1': 1,
+    '2': 2,
+    '3': 3,
+    '4': 4,
+    '5': 5,
+    '6': 6,
+    '7': 7,
+    '8': 8,
+    '9': 9,
+  );
 
   // Remove +/- sign if present at first character
   @if ($first-character == '+' or $first-character == '-') {
@@ -299,8 +319,8 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
   @for $i from 1 through str-length($value) {
     $character: str-slice($value, $i, $i);
 
-    @if not (index(map-keys($numbers), $character) or $character == '.') {
-      @return to-length(if($minus, -$result, $result), str-slice($value, $i))
+    @if not(index(map-keys($numbers), $character) or $character == '.') {
+      @return to-length(if($minus, -$result, $result), str-slice($value, $i));
     }
 
     @if $character == '.' {
@@ -325,7 +345,23 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
 /// @return {Number} - `$value` expressed in `$unit`
 ///
 @function to-length($value, $unit) {
-  $units: ('px': 1px, 'cm': 1cm, 'mm': 1mm, '%': 1%, 'ch': 1ch, 'pc': 1pc, 'in': 1in, 'em': 1em, 'rem': 1rem, 'pt': 1pt, 'ex': 1ex, 'vw': 1vw, 'vh': 1vh, 'vmin': 1vmin, 'vmax': 1vmax);
+  $units: (
+    'px': 1px,
+    'cm': 1cm,
+    'mm': 1mm,
+    '%': 1%,
+    'ch': 1ch,
+    'pc': 1pc,
+    'in': 1in,
+    'em': 1em,
+    'rem': 1rem,
+    'pt': 1pt,
+    'ex': 1ex,
+    'vw': 1vw,
+    'vh': 1vh,
+    'vmin': 1vmin,
+    'vmax': 1vmax,
+  );
 
   @if not index(map-keys($units), $unit) {
     $_: im-log('Invalid unit `#{$unit}`.');
@@ -333,4 +369,3 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
 
   @return $value * map-get($units, $unit);
 }
-

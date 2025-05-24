@@ -1,57 +1,57 @@
 /* <! ------------------------------ FONTS - DISPLAY ------------------------------> */
 @mixin font-display-1-l {
-	@include font-display(1, "light"); // font-size: 40
+  @include font-display(1, 'light'); // font-size: 40
 }
 @mixin font-display-2-l {
-	@include font-display(2, "light"); // font-size: 32
+  @include font-display(2, 'light'); // font-size: 32
 }
 
 /* <! ------------------------------ FONTS - HEADING ------------------------------> */
 @mixin font-heading-1-m() {
-	@include font-heading(1, "medium"); // font-size: 24px;
+  @include font-heading(1, 'medium'); // font-size: 24px;
 }
 @mixin font-heading-1-r() {
-	@include font-heading(1, "regular"); // font-size: 24px;
+  @include font-heading(1, 'regular'); // font-size: 24px;
 }
 @mixin font-heading-2-m() {
-	@include font-heading(2, "medium"); // font-size: 20px;
+  @include font-heading(2, 'medium'); // font-size: 20px;
 }
 @mixin font-heading-2-r() {
-	@include font-heading(2, "regular"); // font-size: 20px;
+  @include font-heading(2, 'regular'); // font-size: 20px;
 }
 @mixin font-heading-3-b() {
-	@include font-heading(3, "bold"); // font-size: 18px; bold
+  @include font-heading(3, 'bold'); // font-size: 18px; bold
 }
 @mixin font-heading-3-m() {
-	@include font-heading(3, "medium"); // font-size: 18px;
+  @include font-heading(3, 'medium'); // font-size: 18px;
 }
 @mixin font-heading-3-r() {
-	@include font-heading(3, "regular"); // font-size: 18px;
+  @include font-heading(3, 'regular'); // font-size: 18px;
 }
 
 /* <! ------------------------------ FONTS - BODY ------------------------------> */
 @mixin font-body-1-r() {
-	@include font-body(1, "regular"); // font-size: 16px;
+  @include font-body(1, 'regular'); // font-size: 16px;
 }
 @mixin font-body-1-m() {
-	@include font-body(1, "medium"); // font-size: 16px;
+  @include font-body(1, 'medium'); // font-size: 16px;
 }
 @mixin font-body-2-r() {
-	@include font-body(2, "regular"); // font-size: 14px;
+  @include font-body(2, 'regular'); // font-size: 14px;
 }
 @mixin font-body-2-m() {
-	@include font-body(2, "medium"); // font-size: 14px;
+  @include font-body(2, 'medium'); // font-size: 14px;
 }
 @mixin font-body-3-r() {
-	@include font-body(3, "regular"); // font-size: 12px;
+  @include font-body(3, 'regular'); // font-size: 12px;
 }
 @mixin font-body-3-m() {
-	@include font-body(3, "medium"); // font-size: 12px;
+  @include font-body(3, 'medium'); // font-size: 12px;
 }
 
 /* <! ------------------------------ FONTS - ANNOTATION ------------------------------> */
 @mixin font-annotation() {
-	font-size: var(--font-annotation-1);
-	font-family: font-family("regular");
-	line-height: 14px;
+  font-size: var(--font-annotation-1);
+  font-family: font-family('regular');
+  line-height: 14px;
 }
